@@ -1,26 +1,51 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">    
+    <section>
+      <Header title="Fooshi Shop Page" />
+      <router-view></router-view>
+    </section>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+// Refactor sidebar filter to post requests instead of quey params
+// Add quantity mgm to cart
+// Add shipping costs mgm to cart
+
+import Header from './components/Header';
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Header,
+  },
+
+  data() {
+    return {
+      shoppingList: [],
+    }
+  },
+
+  methods: {
+    updateCart(shoppingList){
+    console.log(shoppingList);
+    this.shoppingList = shoppingList;
+    },
+    
+  },
+
+  async mounted() {
+    await this.fetchData();
+  },
+  
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
 </style>
+
+
